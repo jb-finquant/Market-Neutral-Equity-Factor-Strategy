@@ -9,25 +9,11 @@ from data.loader import download_prices
 from signals.momentum import compute_momentum
 from signals.mean_reversion import compute_mean_reversion
 from portfolio.construction import combine_signals, compute_weights
-from portfolio.beta import (
-    compute_rolling_beta,
-    compute_beta_neutral_weights,
-    compute_portfolio_beta,
-)
+from portfolio.beta import (compute_rolling_beta,compute_beta_neutral_weights,compute_portfolio_beta,)
 from backtest.engine import run_backtest, compute_monthly_returns
 from performance.metrics import compute_metrics
-from performance.regime import (
-    load_market_returns,
-    classify_regimes,
-    compute_regime_metrics,
-    compute_crisis_metrics,
-)
-from performance.visualisation import (
-    plot_equity_curve,
-    plot_drawdown,
-    plot_monthly_heatmap,
-    plot_rolling_sharpe,
-)
+from performance.regime import (load_market_returns,classify_regimes,compute_regime_metrics,compute_crisis_metrics,)
+from performance.visualization import (plot_equity_curve,plot_drawdown,plot_monthly_heatmap,plot_rolling_sharpe,)
 
 logging.basicConfig(level=logging.WARNING)
 

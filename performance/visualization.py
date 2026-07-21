@@ -1,4 +1,5 @@
 import logging
+from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -9,6 +10,7 @@ logger = logging.getLogger(__name__)
 figsize = (14, 6)
 figsize_tall = (14, 8)
 rolling_window = 12
+output_dir = Path("docs/images")
 
 
 def plot_equity_curve(results_dn: pd.DataFrame, results_bn: pd.DataFrame) -> None:
@@ -26,7 +28,7 @@ def plot_equity_curve(results_dn: pd.DataFrame, results_bn: pd.DataFrame) -> Non
     ax.legend()
     ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: f"{y:.0%}"))
     plt.tight_layout()
-    plt.savefig("equity_curve.png", dpi=150)
+    plt.savefig(output_dir / "equity_curve.png", dpi=150)
     plt.show()
     logger.info("Equity curve saved.")
 
@@ -47,7 +49,7 @@ def plot_drawdown(results_dn: pd.DataFrame) -> None:
     ax.legend()
     ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: f"{y:.0%}"))
     plt.tight_layout()
-    plt.savefig("drawdown.png", dpi=150)
+    plt.savefig(output_dir / "drawdown.png", dpi=150)
     plt.show()
     logger.info("Drawdown chart saved.")
 
@@ -84,7 +86,7 @@ def plot_monthly_heatmap(results_dn: pd.DataFrame) -> None:
     plt.colorbar(im, ax=ax, format=plt.FuncFormatter(lambda y, _: f"{y:.0%}"))
     ax.set_title("Monthly Returns Heatmap – Dollar Neutral (Net Return)")
     plt.tight_layout()
-    plt.savefig("monthly_heatmap.png", dpi=150)
+    plt.savefig(output_dir / "monthly_heatmap.png", dpi=150)
     plt.show()
     logger.info("Monthly heatmap saved.")
 
@@ -115,6 +117,6 @@ def plot_rolling_sharpe(results_dn: pd.DataFrame, results_bn: pd.DataFrame, wind
     ax.set_xlabel("Date")
     ax.legend()
     plt.tight_layout()
-    plt.savefig("rolling_sharpe.png", dpi=150)
+    plt.savefig(output_dir / "rolling_sharpe.png", dpi=150)
     plt.show()
     logger.info("Rolling Sharpe saved.")
